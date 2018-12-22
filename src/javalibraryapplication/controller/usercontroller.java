@@ -11,6 +11,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javalibraryapplication.model.DbSearch;
 import javalibraryapplication.database.DbConnection;
+import javax.swing.JOptionPane;
+import javalibraryapplication.model.Members;
 
 /**
  *
@@ -18,32 +20,42 @@ import javalibraryapplication.database.DbConnection;
  */
 public class usercontroller {
     
-      public static boolean login(String txtAccount,String txtPassword) {
+      public static int login(String txtMembershipNo,String txtPassword) {
         try{
             String username = null;
             String password = null;
+            String role = null;
             
             
-            ResultSet rs = new DbSearch().searchLogin(txtAccount);
+            ResultSet rs = new DbSearch().searchLogin(txtMembershipNo);
             while(rs.next()){
                 username = rs.getString("Membership_No");
                 password = rs.getString("Password");
+                role = rs.getString("user_role");
             }
             if(username != null && password != null){
                 if(password.equals(txtPassword)){
-                    return true;
+                    if(role.equals("admin")){
+                        return 1;
+                    }else if(role.equals("user")){
+                        return 2;
+                    }
                 }
                 else{
-                    return false;
+                    return 0;
                 }
             }
             
             DbConnection.closeCon();
         }
         catch(SQLException ex){
-            Logger.getLogger(usercontroller.class.getName()).log(Level.SEVERE,null,ex);
+            JOptionPane.showMessageDialog(null,ex);
         }
-          return false;
+          return 0;
+    }
+      
+      public void store(Members members) {
+        customerRepository.store(members);
     }
     
 }

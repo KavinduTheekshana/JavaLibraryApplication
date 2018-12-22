@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,13 +22,13 @@ public class DbConnection {
     
     public static Statement getStatementConnection(){
         try{
-            String url = "jdbc:mysql://localhost:3306/javabankdb";
+            String url = "jdbc:mysql://localhost:3306/javalibrary_db";
             conn = DriverManager.getConnection(url,"root","");
             
             stat = conn.createStatement();
         }
-        catch(Exception e){
-            e.printStackTrace();
+        catch(Exception ex){
+            JOptionPane.showMessageDialog(null,ex);
         }
         return stat;
     }

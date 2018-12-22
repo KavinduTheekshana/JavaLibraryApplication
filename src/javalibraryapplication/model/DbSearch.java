@@ -5,9 +5,11 @@
  */
 package javalibraryapplication.model;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import javalibraryapplication.database.DbConnection;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,16 +20,16 @@ public class DbSearch {
      Statement stmt;
      ResultSet rs = null;
     
-    public ResultSet searchLogin(String txtAccount){
+    public ResultSet searchLogin(String Membership_No){
         
         
         try{
             stmt = DbConnection.getStatementConnection();
-            rs = stmt.executeQuery("SELECT * from user WHERE Account_Number = '"+txtAccount+"'");
+            rs = stmt.executeQuery("SELECT * from user WHERE Membership_No = '"+Membership_No+"'");
             
         }
-        catch(Exception e){
-            e.printStackTrace();
+        catch(Exception ex){
+            JOptionPane.showMessageDialog(null,ex);
         }
         return rs;  
     }
