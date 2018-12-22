@@ -57,7 +57,7 @@ public class login extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Montserrat SemiBold", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(71, 71, 71));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("NSBM BANK OF SRI LANKA");
+        jLabel2.setText("LIBRARY MANAGEMENT SYSTEM");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -217,7 +217,7 @@ public class login extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         boolean x = usercontroller.login(txtAccount.getText(),txtPassword.getText());
         if(x==true){
-           new Dashboard().setVisible(true);
+            new Dashboard().setVisible(true);
            dispose();
         }else{
            lblStatus.setText("The account number or password you entered did not match our records.");

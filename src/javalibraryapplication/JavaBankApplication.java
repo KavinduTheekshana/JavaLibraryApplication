@@ -17,25 +17,23 @@ public class JavaBankApplication {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
-        Dashboard d = new Dashboard();
-        d.setVisible(true);
-        
-//        Splash s = new Splash();
-//        s.setVisible(true);
-//        login l = new login();
-//        try {
-//            for(int i=0;i<=100;i++){
-//                Thread.sleep(30);
-//                s.jProgressBar1.setValue(i);
-//                if(i==100){
-//                    s.setVisible(false);
-//                    l.setVisible(true);
-//                }
-//            }
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(null, e);
-//        }
+//        new Dashboard().setVisible(true);
+    
+        Splash s = new Splash();
+        s.setVisible(true);
+        login l = new login();
+        try {
+            for(int i=0;i<=100;i++){
+                Thread.sleep(30);
+                s.jProgressBar1.setValue(i);
+                if(i==100){
+                    s.setVisible(false);
+                    l.setVisible(true);
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
         
     }
     

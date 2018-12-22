@@ -9,9 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javabankapplication.model.DbSearch;
+import javalibraryapplication.model.DbSearch;
 import javalibraryapplication.database.DbConnection;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -27,7 +26,7 @@ public class usercontroller {
             
             ResultSet rs = new DbSearch().searchLogin(txtAccount);
             while(rs.next()){
-                username = rs.getString("Account_Number");
+                username = rs.getString("Membership_No");
                 password = rs.getString("Password");
             }
             if(username != null && password != null){
