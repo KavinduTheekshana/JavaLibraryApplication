@@ -19,6 +19,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import javalibraryapplication.model.DbSearch;
 import javalibraryapplication.database.DbConnection;
 import javax.swing.JOptionPane;
@@ -82,6 +83,8 @@ public class AddBorrow extends javax.swing.JFrame {
         btnSearchMember = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         txtMembershipNo = new javax.swing.JTextField();
+        lblListId = new javax.swing.JLabel();
+        btnLoadDetails = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblBorrow = new javax.swing.JTable();
@@ -89,6 +92,7 @@ public class AddBorrow extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         btnDelete = new javax.swing.JButton();
         btnReset1 = new javax.swing.JButton();
+        lblStatus2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -257,6 +261,21 @@ public class AddBorrow extends javax.swing.JFrame {
 
         txtMembershipNo.setFont(new java.awt.Font("Montserrat Light", 0, 24)); // NOI18N
 
+        lblListId.setBackground(new java.awt.Color(247, 249, 249));
+        lblListId.setFont(new java.awt.Font("Montserrat Light", 0, 24)); // NOI18N
+        lblListId.setForeground(new java.awt.Color(247, 249, 249));
+        lblListId.setEnabled(false);
+
+        btnLoadDetails.setBackground(new java.awt.Color(95, 106, 106));
+        btnLoadDetails.setForeground(new java.awt.Color(255, 255, 255));
+        btnLoadDetails.setText("LOAD DETAILS");
+        btnLoadDetails.setEnabled(false);
+        btnLoadDetails.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoadDetailsActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -297,14 +316,8 @@ public class AddBorrow extends javax.swing.JFrame {
                         .addComponent(txtAuthor)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(264, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(btnCancel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -312,7 +325,17 @@ public class AddBorrow extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(dateReturning, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(dateReturning, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addComponent(lblListId, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(btnLoadDetails, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(btnCancel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                            .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(26, 26, 26))
         );
         jPanel3Layout.setVerticalGroup(
@@ -362,7 +385,11 @@ public class AddBorrow extends javax.swing.JFrame {
                     .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(92, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblListId, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLoadDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel5.setBackground(new java.awt.Color(247, 249, 249));
@@ -438,6 +465,9 @@ public class AddBorrow extends javax.swing.JFrame {
             }
         });
 
+        lblStatus2.setForeground(new java.awt.Color(255, 0, 0));
+        lblStatus2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -450,7 +480,8 @@ public class AddBorrow extends javax.swing.JFrame {
                         .addComponent(btnReset1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 714, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 714, Short.MAX_VALUE)
+                    .addComponent(lblStatus2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -458,8 +489,10 @@ public class AddBorrow extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblStatus2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnReset1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -514,15 +547,73 @@ public class AddBorrow extends javax.swing.JFrame {
     }//GEN-LAST:event_DragControleMousePressed
 
     private void tblBorrowMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblBorrowMouseClicked
-
+        DefaultTableModel model = (DefaultTableModel)tblBorrow.getModel();
+        int selectedRowIndex=tblBorrow.getSelectedRow();
+        
+        lblListId.setText(model.getValueAt(selectedRowIndex, 0).toString());
+        btnLoadDetails.setEnabled(true);
     }//GEN-LAST:event_tblBorrowMouseClicked
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // TODO add your handling code here:
+            try{
+                String listid = lblListId.getText();
+
+                if (listid=="") {
+                    lblStatus2.setText("Please Select Row What Do you want Delete");
+                } else {
+                    if (JOptionPane.showConfirmDialog(null, "Are you sure?", "WARNING",
+        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            boolean returnValue = BorrowController.deleteBorrow(listid);
+                if(returnValue==true){
+                        JOptionPane.showMessageDialog(null, "Borrowe Details Deleted Sucessfull successfully");
+                        displayBorrowDetails();
+                        clearFields();
+                    }
+         } else {
+        // no option
+        }
+                
+                }
+            }catch(Exception ex){
+                JOptionPane.showConfirmDialog(null, ex);
+            }
+        
+        
+        
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnReset1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReset1ActionPerformed
-        // TODO add your handling code here:
+        try{
+            String membershipNo = txtMembershipNo.getText();
+            String memberName = txtMemberName.getText();
+            String bookid = txtBookId.getText();
+            String bookname = txtBookName.getText();
+            String category = txtCategory.getText();
+            String author = txtAuthor.getText();
+            String browingDate = ((JTextField)dateBorrowing.getDateEditor().getUiComponent()).getText();
+            String returningDate = ((JTextField)dateReturning.getDateEditor().getUiComponent()).getText();
+            String listId = lblListId.getText();
+            int x=1;
+            
+            if(fieldsIsEmpty()) {
+                   lblStatus.setText("Error: Some of the fields is empty!");             
+            } 
+            else {
+                boolean returnValue = BorrowController.UpdateBorrow(membershipNo,memberName,
+                        bookid,bookname,category,author,browingDate,returningDate,listId);
+              
+                if(returnValue==true){
+                    JOptionPane.showMessageDialog(null, " Borrow has been Updated successfully");
+                    displayBorrowDetails();
+                    clearFields();
+                  }
+                
+                
+
+            }
+            }catch(Exception ex){
+                JOptionPane.showConfirmDialog(null, ex);
+            }
     }//GEN-LAST:event_btnReset1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -622,6 +713,55 @@ public class AddBorrow extends javax.swing.JFrame {
         clearFields();
     }//GEN-LAST:event_btnResetActionPerformed
 
+    private void btnLoadDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadDetailsActionPerformed
+        try{
+            String membershipno = null;
+            String membername = null;
+            String bookid = null;
+            String bookname = null;
+            String category = null;
+            String author = null;
+            String Bdate = null;
+            String Rdate = null;
+
+            String ListId = lblListId.getText();
+            ResultSet rs = new DbSearch().searchborrow2(ListId);           
+            while(rs.next()){
+                membershipno = rs.getString("membership_no");
+                membername = rs.getString("member_name");
+                bookid = rs.getString("book_id");
+                bookname = rs.getString("bookname");
+                category = rs.getString("category");
+                author = rs.getString("author");
+                Bdate = rs.getString("borrowing_date");
+                Rdate = rs.getString("returning_date");
+            }
+            if(membershipno!=null && membername!=null && bookid!=null && bookname!=null && category!=null && author!=null){
+                txtMembershipNo.setText(membershipno);
+                txtMemberName.setText(membername);
+                txtBookId.setText(bookid);
+                txtBookName.setText(bookname);
+                txtCategory.setText(category);
+                txtAuthor.setText(author);
+                java.util.Date date1 = new SimpleDateFormat("MMM d, yyyy").parse(Bdate);
+                dateBorrowing.setDate(date1);
+                java.util.Date date2 = new SimpleDateFormat("MMM d, yyyy").parse(Rdate);
+                dateReturning.setDate(date2);
+
+
+
+                DbConnection.closeCon();
+            }
+            else{
+                JOptionPane.showMessageDialog(null,"Check the Input or\n Book not found !!!","Error",JOptionPane.ERROR_MESSAGE);
+            }
+
+        }
+        catch(Exception ex){
+
+        }
+    }//GEN-LAST:event_btnLoadDetailsActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -678,6 +818,8 @@ public class AddBorrow extends javax.swing.JFrame {
             this.dateBorrowing.setDate(null);
             this.dateReturning.setDate(null);
             this.lblStatus.setText("");
+            this.lblStatus2.setText("");
+            this.lblListId.setText("");
     }
         
         public void displayBorrowDetails(){
@@ -715,6 +857,7 @@ public class AddBorrow extends javax.swing.JFrame {
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnCancel2;
     private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnLoadDetails;
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnReset1;
     private javax.swing.JButton btnSearchMember;
@@ -740,7 +883,9 @@ public class AddBorrow extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblListId;
     private javax.swing.JLabel lblStatus;
+    private javax.swing.JLabel lblStatus2;
     private javax.swing.JTable tblBorrow;
     private javax.swing.JTextField txtAuthor;
     private javax.swing.JTextField txtBookId;

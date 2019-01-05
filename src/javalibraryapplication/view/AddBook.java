@@ -510,27 +510,31 @@ public class AddBook extends javax.swing.JFrame {
     }//GEN-LAST:event_tblBookMouseClicked
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        if (JOptionPane.showConfirmDialog(null, "Are you sure?", "WARNING",
-        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-            try{
+        try{
                 String listid = lblListId.getText();
 
                 if (listid=="") {
                     lblStatus2.setText("Please Select Row What Do you want Delete");
                 } else {
-                boolean returnValue = BookController.deleteBook(listid);
+                    
+                    if (JOptionPane.showConfirmDialog(null, "Are you sure?", "WARNING",
+                    JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                    boolean returnValue = BookController.deleteBook(listid);
                 if(returnValue==true){
                         JOptionPane.showMessageDialog(null, "Book Deleted Sucessfull successfully");
                         displayBookDetails();
                         clearFields();
                     }
+             } else {
+            // no option
+            }
+                
                 }
             }catch(Exception ex){
                 JOptionPane.showConfirmDialog(null, ex);
             }
-         } else {
-        // no option
-        }
+        
+        
         
         
     }//GEN-LAST:event_btnDeleteActionPerformed

@@ -39,6 +39,33 @@ public class BorrowController
                 return false;
 
             } 
+         public static boolean UpdateBorrow(String membershipNo,String memberName,String bookid,String bookname,
+                String category,String author,String browingDate,String returningDate,String listId){
+
+              
+                boolean returnValue = new AddBorrow().UpdateborrowForm(membershipNo,memberName,bookid,bookname,
+                        category,author,browingDate,returningDate,listId);
+                
+                if(returnValue==true){
+                    return true;
+                }
+
+                return false;
+
+            }
+
+     public static boolean deleteBorrow(String listid){
+
+              
+                boolean returnValue = new AddBorrow().DeleteborrowForm(listid);
+                
+                if(returnValue==true){
+                    return true;
+                }
+
+                return false;
+
+            }
 
         public static boolean updateReturn(String borrowid,String returnedDate,
                         String condetion,String payment1,String payment2,String total,String return_ststus){

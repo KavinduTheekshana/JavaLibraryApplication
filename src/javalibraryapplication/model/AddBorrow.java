@@ -14,16 +14,6 @@ import javax.swing.JOptionPane;
  */
 public class AddBorrow 
     {
-//         public void bookForm(String isbn,String bookid,String bookname,String category,String author,String copyno,String price){
-//        Statement stmt;
-//        try{
-//            stmt = DbConnection.getStatementConnection();
-//            stmt.executeUpdate("INSERT into books (`isbn`, `bookid`, `bookname`, `category`, `author`, `copyno`, `price`) VALUES('" +isbn+ "','" +bookid+ "','" +bookname+ "','" +category+ "','" +author+ "','" +copyno+ "','" +price+ "')");
-//        }
-//        catch(Exception e){
-//            e.printStackTrace();
-//        }
-//    }
     
     public boolean borrowForm(String membershipNo,String memberName,String bookid,String bookname,String category,String author,String browingDate,String returningDate){
         Statement stmt;
@@ -31,6 +21,39 @@ public class AddBorrow
             stmt = DbConnection.getStatementConnection();
             stmt.executeUpdate("INSERT into borrow (`membership_no`, `member_name`, `book_id`, `bookname`, `category`, `author`, `borrowing_date`, `returning_date`)"
                     + " VALUES('" +membershipNo+ "','" +memberName+ "','" +bookid+ "','" +bookname+ "','" +category+ "','" +author+ "','" +browingDate+ "','" +returningDate+ "')");
+            DbConnection.closeCon();
+            return true;
+            
+        }
+        catch(Exception e){
+            JOptionPane.showConfirmDialog(null, e);
+        }
+        return false;
+    }
+    
+    public boolean UpdateborrowForm(String membershipNo,String memberName,String bookid,String bookname,
+            String category,String author,String browingDate,String returningDate,String listId){
+        Statement stmt;
+        try{
+            stmt = DbConnection.getStatementConnection();
+            stmt.executeUpdate("UPDATE `borrow` SET `membership_no`='"+membershipNo+"',`member_name`='"+memberName+"',"
+                    + "`book_id`='"+bookid+"',`bookname`='"+bookname+"',`category`='"+category+"',`author`='"+author+"',"
+                    + "`borrowing_date`='"+browingDate+"',`returning_date`='"+returningDate+"' WHERE `id`='"+listId+"'");
+            DbConnection.closeCon();
+            return true;
+            
+        }
+        catch(Exception e){
+            JOptionPane.showConfirmDialog(null, e);
+        }
+        return false;
+    }
+    
+     public boolean DeleteborrowForm(String listid){
+        Statement stmt;
+        try{
+            stmt = DbConnection.getStatementConnection();
+            stmt.executeUpdate("DELETE FROM `borrow` WHERE id='"+listid+"'");
             DbConnection.closeCon();
             return true;
             

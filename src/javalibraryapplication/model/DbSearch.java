@@ -76,6 +76,17 @@ public class DbSearch {
         return rs;
     }
     
+    public ResultSet searchborrow2(String ListId){
+        try{
+            stmt = DbConnection.getStatementConnection();
+            rs = stmt.executeQuery("SELECT * FROM `borrow` WHERE id='"+ListId+"'");
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return rs;
+    }
+    
     public ResultSet searchBookIDBorrowForm(String BookID){
         try{
             stmt = DbConnection.getStatementConnection();
