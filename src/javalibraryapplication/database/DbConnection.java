@@ -19,7 +19,7 @@ public class DbConnection {
     
     static Connection conn;
     static Statement stat = null;
-    
+  
     public static Statement getStatementConnection(){
         try{
             String url = "jdbc:mysql://localhost:3306/javalibrary_db";
@@ -32,7 +32,6 @@ public class DbConnection {
         }
         return stat;
     }
-    
     public static void closeCon() throws SQLException{
         conn.close();
     }

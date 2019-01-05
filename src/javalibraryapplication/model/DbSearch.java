@@ -21,8 +21,7 @@ public class DbSearch {
      ResultSet rs = null;
     
     public ResultSet searchLogin(String Membership_No){
-        
-        
+ 
         try{
             stmt = DbConnection.getStatementConnection();
             rs = stmt.executeQuery("SELECT * from user WHERE Membership_No = '"+Membership_No+"'");
@@ -32,6 +31,28 @@ public class DbSearch {
             JOptionPane.showMessageDialog(null,ex);
         }
         return rs;  
+    }
+    
+    public ResultSet searchMembers(){
+        try{
+            stmt = DbConnection.getStatementConnection();
+            rs = stmt.executeQuery("SELECT * from user");
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return rs;
+    }
+    
+    public ResultSet searchBooks(){
+        try{
+            stmt = DbConnection.getStatementConnection();
+            rs = stmt.executeQuery("SELECT * from books");
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return rs;
     }
     
 }
