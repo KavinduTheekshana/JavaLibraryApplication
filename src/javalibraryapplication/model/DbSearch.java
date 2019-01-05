@@ -55,4 +55,48 @@ public class DbSearch {
         return rs;
     }
     
+    public ResultSet searchMembersBorrow(String MembershipNo){
+        try{
+            stmt = DbConnection.getStatementConnection();
+            rs = stmt.executeQuery("SELECT * from user where Membership_No='" +MembershipNo+ "'");
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return rs;
+    }
+    
+    public ResultSet searchBookIDBorrowForm(String BookID){
+        try{
+            stmt = DbConnection.getStatementConnection();
+            rs = stmt.executeQuery("SELECT * from books where bookid = '" +BookID+ "'");
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return rs;
+    }
+    
+    public ResultSet searchBorrow(){
+        try{
+            stmt = DbConnection.getStatementConnection();
+            rs = stmt.executeQuery("SELECT * from borrow");
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return rs;
+    }
+    
+    public ResultSet searchBorrowReturn(String MembershipNo){
+        try{
+            stmt = DbConnection.getStatementConnection();
+            rs = stmt.executeQuery("SELECT * from borrow WHERE membership_no='"+MembershipNo+"' AND return_ststus ='False'");
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return rs;
+    }
+    
 }

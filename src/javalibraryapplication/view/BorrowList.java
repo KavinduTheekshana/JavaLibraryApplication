@@ -15,14 +15,14 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Kavindu Theekshana
  */
-public class BookList extends javax.swing.JFrame {
+public class BorrowList extends javax.swing.JFrame {
 
     int xMouse;
     int yMouse;
     
-    public BookList() {
+    public BorrowList() {
         initComponents();
-        displayBookDetails();
+        displayBorrowDetails();
     }
 
     /**
@@ -40,7 +40,7 @@ public class BookList extends javax.swing.JFrame {
         DragControle = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblBook = new javax.swing.JTable();
+        tblBorrow = new javax.swing.JTable();
         jPanel5 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
@@ -96,25 +96,25 @@ public class BookList extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(247, 249, 249));
 
-        tblBook.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        tblBook.setModel(new javax.swing.table.DefaultTableModel(
+        tblBorrow.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        tblBorrow.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "ISBN", "Name", "Category", "Author", "Price", "Copies"
+                "ID", "Membership No", "Member Name", "Book ID", "Book Name", "Category", "Author", "B-Date", "R-Date"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, true, true
+                false, false, false, false, false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        tblBook.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jScrollPane1.setViewportView(tblBook);
+        tblBorrow.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jScrollPane1.setViewportView(tblBorrow);
 
         jPanel5.setBackground(new java.awt.Color(231, 76, 60));
 
@@ -122,12 +122,12 @@ public class BookList extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Montserrat SemiBold", 0, 24)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setText("BOOK LIST");
+        jLabel11.setText("BORROW LIST");
 
         jPanel4.setBackground(new java.awt.Color(231, 76, 60));
 
         cmbSchField.setFont(new java.awt.Font("Montserrat Light", 0, 20)); // NOI18N
-        cmbSchField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Name", "Author", "ID", "ISBN", "Category" }));
+        cmbSchField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "Member Name", "Book Name" }));
 
         txtFullName.setFont(new java.awt.Font("Montserrat Light", 0, 24)); // NOI18N
 
@@ -168,7 +168,7 @@ public class BookList extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 967, Short.MAX_VALUE)
+                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 905, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -260,30 +260,32 @@ public class BookList extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BookList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BorrowList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BookList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BorrowList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BookList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BorrowList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BookList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BorrowList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new BookList().setVisible(true);
+                new BorrowList().setVisible(true);
             }
         });
     }
     
     
-    public void displayBookDetails(){
-        ResultSet rs = new DbSearch().searchBooks();
+    public void displayBorrowDetails(){
+        ResultSet rs = new DbSearch().searchBorrow();
         DefaultTableModel dtm = (DefaultTableModel)
-                tblBook.getModel();
+                tblBorrow.getModel();
                 dtm.setRowCount(0);
         try
         {
@@ -291,13 +293,15 @@ public class BookList extends javax.swing.JFrame {
             while(rs.next())
             {
                 v = new Vector();
-                v.add(rs.getString("bookid"));
-                v.add(rs.getString("isbn"));
+                v.add(rs.getString("id"));
+                v.add(rs.getString("membership_no"));
+                v.add(rs.getString("member_name"));
+                v.add(rs.getString("book_id"));
                 v.add(rs.getString("bookname"));
                 v.add(rs.getString("category"));
                 v.add(rs.getString("author"));
-                v.add(rs.getString("price"));
-                v.add(rs.getString("copyno"));
+                v.add(rs.getString("borrowing_date"));
+                v.add(rs.getString("returning_date"));
                 dtm.addRow(v);
             }
             DbConnection.closeCon();
@@ -320,7 +324,7 @@ public class BookList extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tblBook;
+    private javax.swing.JTable tblBorrow;
     private javax.swing.JTextField txtFullName;
     // End of variables declaration//GEN-END:variables
 }
