@@ -47,7 +47,7 @@
                   <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="22" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
               <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
           </Group>
@@ -159,28 +159,31 @@
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="txtEmail" max="32767" attributes="0"/>
                                   <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="txtContactNo" min="-2" pref="251" max="-2" attributes="0"/>
                                           <Component id="txtNIC" alignment="0" min="-2" pref="251" max="-2" attributes="0"/>
-                                          <Group type="102" attributes="0">
-                                              <Component id="radioMale" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="radioFemale" min="-2" max="-2" attributes="0"/>
+                                          <Component id="txtPassword" alignment="0" min="-2" pref="324" max="-2" attributes="0"/>
+                                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="lblListId" min="-2" pref="81" max="-2" attributes="0"/>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                  <Component id="btnLoadDetails" max="32767" attributes="0"/>
+                                              </Group>
+                                              <Component id="btnCancel" alignment="0" max="32767" attributes="0"/>
+                                              <Group type="102" attributes="0">
+                                                  <Component id="btnReset" min="-2" pref="106" max="-2" attributes="0"/>
+                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                  <Component id="btnSubmit" min="-2" pref="200" max="-2" attributes="0"/>
+                                              </Group>
                                           </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="cmbDay" min="-2" pref="88" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="cmbMonth" min="-2" pref="123" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="cmbYear" min="-2" pref="99" max="-2" attributes="0"/>
+                                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                              <Component id="dateDOB" alignment="1" min="-2" pref="212" max="-2" attributes="0"/>
+                                              <Group type="102" attributes="0">
+                                                  <Component id="radioMale" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                  <Component id="radioFemale" min="-2" max="-2" attributes="0"/>
+                                              </Group>
                                           </Group>
-                                          <Component id="txtPassword" alignment="0" max="32767" attributes="0"/>
-                                          <Group type="102" attributes="0">
-                                              <Component id="btnReset" min="-2" pref="106" max="-2" attributes="0"/>
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="btnSubmit" max="32767" attributes="0"/>
-                                          </Group>
-                                          <Component id="btnCancel" alignment="0" max="32767" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="107" max="-2" attributes="0"/>
                                   </Group>
@@ -201,7 +204,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="lblStatus" pref="34" max="32767" attributes="0"/>
+                      <Component id="lblStatus" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -238,26 +241,29 @@
                           <Component id="radioMale" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="radioFemale" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="cmbDay" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="cmbMonth" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="cmbYear" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="dateDOB" max="32767" attributes="0"/>
+                          <Component id="jLabel9" pref="39" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtPassword" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="btnReset" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
                           <Component id="btnSubmit" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnCancel" min="-2" pref="45" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="51" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="lblListId" alignment="1" min="-2" pref="47" max="-2" attributes="0"/>
+                          <Component id="btnLoadDetails" alignment="1" min="-2" pref="47" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -447,152 +453,6 @@
                 <Property name="text" type="java.lang.String" value="DOB * :"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JComboBox" name="cmbDay">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Montserrat Light" size="24" style="0"/>
-                </Property>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="32">
-                    <StringItem index="0" value="Day"/>
-                    <StringItem index="1" value="01"/>
-                    <StringItem index="2" value="02"/>
-                    <StringItem index="3" value="03"/>
-                    <StringItem index="4" value="04"/>
-                    <StringItem index="5" value="05"/>
-                    <StringItem index="6" value="06"/>
-                    <StringItem index="7" value="07"/>
-                    <StringItem index="8" value="08"/>
-                    <StringItem index="9" value="09"/>
-                    <StringItem index="10" value="10"/>
-                    <StringItem index="11" value="11"/>
-                    <StringItem index="12" value="12"/>
-                    <StringItem index="13" value="13"/>
-                    <StringItem index="14" value="14"/>
-                    <StringItem index="15" value="15"/>
-                    <StringItem index="16" value="16"/>
-                    <StringItem index="17" value="17"/>
-                    <StringItem index="18" value="18"/>
-                    <StringItem index="19" value="19"/>
-                    <StringItem index="20" value="20"/>
-                    <StringItem index="21" value="21"/>
-                    <StringItem index="22" value="22"/>
-                    <StringItem index="23" value="23"/>
-                    <StringItem index="24" value="24"/>
-                    <StringItem index="25" value="25"/>
-                    <StringItem index="26" value="26"/>
-                    <StringItem index="27" value="27"/>
-                    <StringItem index="28" value="28"/>
-                    <StringItem index="29" value="29"/>
-                    <StringItem index="30" value="30"/>
-                    <StringItem index="31" value="31"/>
-                  </StringArray>
-                </Property>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbDayActionPerformed"/>
-              </Events>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-              </AuxValues>
-            </Component>
-            <Component class="javax.swing.JComboBox" name="cmbMonth">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Montserrat Light" size="24" style="0"/>
-                </Property>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="13">
-                    <StringItem index="0" value="Month"/>
-                    <StringItem index="1" value="01"/>
-                    <StringItem index="2" value="02"/>
-                    <StringItem index="3" value="03"/>
-                    <StringItem index="4" value="04"/>
-                    <StringItem index="5" value="05"/>
-                    <StringItem index="6" value="06"/>
-                    <StringItem index="7" value="07"/>
-                    <StringItem index="8" value="08"/>
-                    <StringItem index="9" value="09"/>
-                    <StringItem index="10" value="10"/>
-                    <StringItem index="11" value="11"/>
-                    <StringItem index="12" value="12"/>
-                  </StringArray>
-                </Property>
-              </Properties>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-              </AuxValues>
-            </Component>
-            <Component class="javax.swing.JComboBox" name="cmbYear">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Montserrat Light" size="24" style="0"/>
-                </Property>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="56">
-                    <StringItem index="0" value="Year"/>
-                    <StringItem index="1" value="2019"/>
-                    <StringItem index="2" value="2018"/>
-                    <StringItem index="3" value="2017"/>
-                    <StringItem index="4" value="2016"/>
-                    <StringItem index="5" value="2015"/>
-                    <StringItem index="6" value="2014"/>
-                    <StringItem index="7" value="2013"/>
-                    <StringItem index="8" value="2012"/>
-                    <StringItem index="9" value="2011"/>
-                    <StringItem index="10" value="2010"/>
-                    <StringItem index="11" value="2009"/>
-                    <StringItem index="12" value="2008"/>
-                    <StringItem index="13" value="2007"/>
-                    <StringItem index="14" value="2006"/>
-                    <StringItem index="15" value="2005"/>
-                    <StringItem index="16" value="2004"/>
-                    <StringItem index="17" value="2003"/>
-                    <StringItem index="18" value="2002"/>
-                    <StringItem index="19" value="2001"/>
-                    <StringItem index="20" value="2000"/>
-                    <StringItem index="21" value="1999"/>
-                    <StringItem index="22" value="1998"/>
-                    <StringItem index="23" value="1997"/>
-                    <StringItem index="24" value="1996"/>
-                    <StringItem index="25" value="1995"/>
-                    <StringItem index="26" value="1994"/>
-                    <StringItem index="27" value="1993"/>
-                    <StringItem index="28" value="1992"/>
-                    <StringItem index="29" value="1991"/>
-                    <StringItem index="30" value="1990"/>
-                    <StringItem index="31" value="1989"/>
-                    <StringItem index="32" value="1988"/>
-                    <StringItem index="33" value="1987"/>
-                    <StringItem index="34" value="1986"/>
-                    <StringItem index="35" value="1985"/>
-                    <StringItem index="36" value="1984"/>
-                    <StringItem index="37" value="1983"/>
-                    <StringItem index="38" value="1982"/>
-                    <StringItem index="39" value="1981"/>
-                    <StringItem index="40" value="1980"/>
-                    <StringItem index="41" value="1979"/>
-                    <StringItem index="42" value="1978"/>
-                    <StringItem index="43" value="1977"/>
-                    <StringItem index="44" value="1976"/>
-                    <StringItem index="45" value="1975"/>
-                    <StringItem index="46" value="1974"/>
-                    <StringItem index="47" value="1973"/>
-                    <StringItem index="48" value="1972"/>
-                    <StringItem index="49" value="1971"/>
-                    <StringItem index="50" value="1970"/>
-                    <StringItem index="51" value="1969"/>
-                    <StringItem index="52" value="1968"/>
-                    <StringItem index="53" value="1967"/>
-                    <StringItem index="54" value="1966"/>
-                    <StringItem index="55" value="1965"/>
-                  </StringArray>
-                </Property>
-              </Properties>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-              </AuxValues>
-            </Component>
             <Component class="javax.swing.JLabel" name="jLabel10">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -667,6 +527,42 @@
                 <Property name="horizontalAlignment" type="int" value="0"/>
               </Properties>
             </Component>
+            <Component class="javax.swing.JLabel" name="lblListId">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="f9" green="f9" red="f7" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Montserrat Light" size="24" style="0"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="f9" green="f9" red="f7" type="rgb"/>
+                </Property>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnLoadDetails">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="6a" green="6a" red="5f" type="rgb"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="LOAD DETAILS"/>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLoadDetailsActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="com.toedter.calendar.JDateChooser" name="dateDOB">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="18" style="0"/>
+                </Property>
+              </Properties>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="jPanel5">
@@ -679,18 +575,21 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jPanel6" alignment="0" pref="744" max="32767" attributes="0"/>
+                  <Component id="jPanel6" alignment="0" pref="756" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="btnReset1" max="32767" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="btnDelete" min="-2" pref="504" max="-2" attributes="0"/>
+                          <Component id="lblStatus2" pref="720" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="btnReset1" max="32767" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="btnDelete" min="-2" pref="504" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="jScrollPane1" pref="720" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="jScrollPane1" min="-2" pref="720" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="24" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -699,8 +598,10 @@
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" max="32767" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="559" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="lblStatus2" min="-2" pref="23" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="btnDelete" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
                           <Component id="btnReset1" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
@@ -724,7 +625,8 @@
                       <Font name="Tahoma" size="15" style="0"/>
                     </Property>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="3" rowCount="0">
+                      <Table columnCount="4" rowCount="0">
+                        <Column editable="false" title="ID" type="java.lang.Object"/>
                         <Column editable="false" title="Membership No" type="java.lang.Object"/>
                         <Column editable="false" title="Name" type="java.lang.Object"/>
                         <Column editable="false" title="E Mail" type="java.lang.Object"/>
@@ -863,6 +765,14 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnReset1ActionPerformed"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblStatus2">
+              <Properties>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="0" green="0" red="ff" type="rgb"/>
+                </Property>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>

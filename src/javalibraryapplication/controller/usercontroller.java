@@ -75,6 +75,33 @@ public class usercontroller {
 
             } 
          
+          public static boolean UpdateMember(String membershipNo,String fullname,String address,String contact,
+                String email,String nic,String sex,String dob,String psw,String listId){
+
+              
+                boolean returnValue = new Members().updateform(membershipNo,fullname,address,contact,email,nic,sex,dob,psw,listId);
+                
+                if(returnValue==true){
+                    return true;
+                }
+
+                return false;
+
+            }
+         
+         public static boolean deleteuser(String listid){
+
+              
+                boolean returnValue = new Members().deleteform(listid);
+                
+                if(returnValue==true){
+                    return true;
+                }
+
+                return false;
+
+            } 
+         
 
           
           

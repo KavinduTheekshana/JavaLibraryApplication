@@ -17,11 +17,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import javalibraryapplication.controller.BookController;
 import javalibraryapplication.model.DbSearch;
 import javalibraryapplication.database.DbConnection;
 import javax.swing.JOptionPane;
 import javalibraryapplication.model.Members;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
 
@@ -73,15 +76,15 @@ public class AddMember extends javax.swing.JFrame {
         radioMale = new javax.swing.JRadioButton();
         radioFemale = new javax.swing.JRadioButton();
         jLabel9 = new javax.swing.JLabel();
-        cmbDay = new javax.swing.JComboBox<>();
-        cmbMonth = new javax.swing.JComboBox<>();
-        cmbYear = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
         txtPassword = new javax.swing.JPasswordField();
         btnReset = new javax.swing.JButton();
         btnSubmit = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
         lblStatus = new javax.swing.JLabel();
+        lblListId = new javax.swing.JLabel();
+        btnLoadDetails = new javax.swing.JButton();
+        dateDOB = new com.toedter.calendar.JDateChooser();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblMembers = new javax.swing.JTable();
@@ -89,6 +92,7 @@ public class AddMember extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         btnDelete = new javax.swing.JButton();
         btnReset1 = new javax.swing.JButton();
+        lblStatus2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -216,20 +220,6 @@ public class AddMember extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Montserrat Light", 0, 24)); // NOI18N
         jLabel9.setText("DOB * :");
 
-        cmbDay.setFont(new java.awt.Font("Montserrat Light", 0, 24)); // NOI18N
-        cmbDay.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Day", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
-        cmbDay.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbDayActionPerformed(evt);
-            }
-        });
-
-        cmbMonth.setFont(new java.awt.Font("Montserrat Light", 0, 24)); // NOI18N
-        cmbMonth.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Month", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
-
-        cmbYear.setFont(new java.awt.Font("Montserrat Light", 0, 24)); // NOI18N
-        cmbYear.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Year", "2019", "2018", "2017", "2016", "2015", "2014", "2013", "2012", "2011", "2010", "2009", "2008", "2007", "2006", "2005", "2004", "2003", "2002", "2001", "2000", "1999", "1998", "1997", "1996", "1995", "1994", "1993", "1992", "1991", "1990", "1989", "1988", "1987", "1986", "1985", "1984", "1983", "1982", "1981", "1980", "1979", "1978", "1977", "1976", "1975", "1974", "1973", "1972", "1971", "1970", "1969", "1968", "1967", "1966", "1965" }));
-
         jLabel10.setFont(new java.awt.Font("Montserrat Light", 0, 24)); // NOI18N
         jLabel10.setText("Password * :");
 
@@ -268,6 +258,23 @@ public class AddMember extends javax.swing.JFrame {
         lblStatus.setForeground(new java.awt.Color(255, 0, 0));
         lblStatus.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
+        lblListId.setBackground(new java.awt.Color(247, 249, 249));
+        lblListId.setFont(new java.awt.Font("Montserrat Light", 0, 24)); // NOI18N
+        lblListId.setForeground(new java.awt.Color(247, 249, 249));
+        lblListId.setEnabled(false);
+
+        btnLoadDetails.setBackground(new java.awt.Color(95, 106, 106));
+        btnLoadDetails.setForeground(new java.awt.Color(255, 255, 255));
+        btnLoadDetails.setText("LOAD DETAILS");
+        btnLoadDetails.setEnabled(false);
+        btnLoadDetails.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoadDetailsActionPerformed(evt);
+            }
+        });
+
+        dateDOB.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -298,25 +305,26 @@ public class AddMember extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtEmail)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtContactNo, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtNIC, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(radioMale)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(radioFemale))
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(cmbDay, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(cmbMonth, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(cmbYear, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(txtPassword)
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btnSubmit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addComponent(btnCancel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                                            .addComponent(lblListId, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(btnLoadDetails, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(btnCancel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(jPanel3Layout.createSequentialGroup()
+                                            .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(dateDOB, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(jPanel3Layout.createSequentialGroup()
+                                            .addComponent(radioMale)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(radioFemale))))
                                 .addGap(107, 107, 107)))))
                 .addContainerGap(26, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createSequentialGroup()
@@ -329,7 +337,7 @@ public class AddMember extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblStatus, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                .addComponent(lblStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(9, 9, 9)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -359,23 +367,25 @@ public class AddMember extends javax.swing.JFrame {
                     .addComponent(jLabel8)
                     .addComponent(radioMale)
                     .addComponent(radioFemale))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(cmbDay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(dateDOB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 51, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblListId, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLoadDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jPanel5.setBackground(new java.awt.Color(247, 249, 249));
@@ -386,11 +396,11 @@ public class AddMember extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Membership No", "Name", "E Mail"
+                "ID", "Membership No", "Name", "E Mail"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -435,7 +445,6 @@ public class AddMember extends javax.swing.JFrame {
         btnDelete.setFont(new java.awt.Font("Montserrat Light", 0, 14)); // NOI18N
         btnDelete.setForeground(new java.awt.Color(255, 255, 255));
         btnDelete.setText("DELETE");
-        btnDelete.setActionCommand("DELETE");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
@@ -446,35 +455,41 @@ public class AddMember extends javax.swing.JFrame {
         btnReset1.setFont(new java.awt.Font("Montserrat Light", 0, 14)); // NOI18N
         btnReset1.setForeground(new java.awt.Color(255, 255, 255));
         btnReset1.setText("UPDATE");
-        btnReset1.setActionCommand("UPDATE");
         btnReset1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnReset1ActionPerformed(evt);
             }
         });
 
+        lblStatus2.setForeground(new java.awt.Color(255, 0, 0));
+        lblStatus2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 744, Short.MAX_VALUE)
+            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 756, Short.MAX_VALUE)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(btnReset1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblStatus2, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(jPanel5Layout.createSequentialGroup()
+                            .addComponent(btnReset1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 559, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblStatus2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnReset1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -490,7 +505,7 @@ public class AddMember extends javax.swing.JFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
@@ -516,10 +531,6 @@ public class AddMember extends javax.swing.JFrame {
     dispose(); //Destroy the JFrame object
     }//GEN-LAST:event_btnCancel2ActionPerformed
 
-    private void cmbDayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbDayActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbDayActionPerformed
-
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
             
             try{
@@ -531,11 +542,11 @@ public class AddMember extends javax.swing.JFrame {
             String contact = txtContactNo.getText();
             String email = txtEmail.getText();
             String nic = txtNIC.getText();
-            String sex = "male";
+            String sex = "Male";
             if (radioFemale.isSelected()) {
-                sex = "female";
+                sex = "Female";
             }
-            String dob = (String) cmbYear.getSelectedItem() + "-" + cmbMonth.getSelectedItem() + "-" + cmbDay.getSelectedItem();
+            String dob = ((JTextField)dateDOB.getDateEditor().getUiComponent()).getText();
             String psw = txtPassword.getText();
             
             if (fieldsIsEmpty()) {
@@ -583,22 +594,130 @@ public class AddMember extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void tblMembersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMembersMouseClicked
-        try{
-            int row = tblMembers.getSelectedRow();
-            String tblClick =(tblMembers.getModel().getValueAt(row, 0).toString());
-        }
-        catch(Exception e){
-            JOptionPane.showConfirmDialog(null, e);
-        }
+        DefaultTableModel model = (DefaultTableModel)tblMembers.getModel();
+        int selectedRowIndex=tblMembers.getSelectedRow();
+        
+        lblListId.setText(model.getValueAt(selectedRowIndex, 0).toString());
+        btnLoadDetails.setEnabled(true);
     }//GEN-LAST:event_tblMembersMouseClicked
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // TODO add your handling code here:
+        try{
+                String listid = lblListId.getText();
+
+                if (listid=="") {
+                    lblStatus2.setText("Please Select Row What Do you want Delete");
+                } else {
+                    
+                    if (JOptionPane.showConfirmDialog(null, "Are you sure?", "WARNING",
+                    JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                    boolean returnValue = usercontroller.deleteuser(listid);
+                if(returnValue==true){
+                        JOptionPane.showMessageDialog(null, "Member Deleted Sucessfull successfully");
+                        displayMemberDetails();
+                        clearFields();
+                    }
+             } else {
+            // no option
+            }
+                
+                }
+            }catch(Exception ex){
+                JOptionPane.showConfirmDialog(null, ex);
+            }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnReset1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReset1ActionPerformed
-        // TODO add your handling code here:
+        try{
+            String listId = lblListId.getText();
+            String membershipNo = txtMembershipNo.getText();
+            String fullname = txtFullName.getText();
+            String address = txtAddress.getText();
+            String contact = txtContactNo.getText();
+            String email = txtEmail.getText();
+            String nic = txtNIC.getText();
+            String sex = "Male";
+            if (radioFemale.isSelected()) {
+                sex = "Female";
+            }
+            String dob = ((JTextField)dateDOB.getDateEditor().getUiComponent()).getText();
+            String psw = txtPassword.getText();
+            
+            if (fieldsIsEmpty()) {
+                lblStatus.setText("Error: Some of the fields is empty!");
+            } 
+            else {
+                
+                boolean returnValue = usercontroller.UpdateMember(membershipNo,fullname,address,contact,email,nic,sex,dob,psw,listId);
+              
+                if(returnValue==true){
+                    JOptionPane.showMessageDialog(null, "Member Details has been Updated successfully");
+                    displayMemberDetails();
+                    clearFields();
+                  } 
+
+            }
+            }catch(Exception ex){
+                JOptionPane.showConfirmDialog(null, ex);
+            }
     }//GEN-LAST:event_btnReset1ActionPerformed
+
+    private void btnLoadDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadDetailsActionPerformed
+        try{
+            String membershipno = null;
+            String fullname = null;
+            String address = null;
+            String contactno = null;
+            String email = null;
+            String nic = null;
+            String gender = null;
+            String dob = null;
+            String password = null;
+
+            String ListId = lblListId.getText();
+            ResultSet rs = new DbSearch().searchMembers2(ListId);
+            while(rs.next()){
+                membershipno = rs.getString("Membership_No");
+                fullname = rs.getString("Full_Name");
+                address = rs.getString("Address");
+                contactno = rs.getString("Contact_No");
+                email = rs.getString("Email");
+                nic = rs.getString("Nic");
+                gender = rs.getString("Gender");
+                dob = rs.getString("DOB");
+                password = rs.getString("Password");
+            }
+            if(membershipno!=null && fullname!=null && fullname!=null && address!=null && contactno!=null && email!=null){
+                txtMembershipNo.setText(membershipno);
+                txtFullName.setText(fullname);
+                txtAddress.setText(address);
+                txtContactNo.setText(contactno);
+                txtEmail.setText(email);
+                txtNIC.setText(nic);
+                txtPassword.setText(password);
+                
+                if(gender.equals("Male")){
+                    radioMale.setSelected(true);
+                    radioFemale.setSelected(false);
+                }else if(gender.equals("Female")){
+                    radioFemale.setSelected(true);
+                    radioMale.setSelected(false);
+                }
+                java.util.Date date1 = new SimpleDateFormat("MMM d, yyyy").parse(dob);
+                dateDOB.setDate(date1);
+                
+
+                DbConnection.closeCon();
+            }
+            else{
+                JOptionPane.showMessageDialog(null,"Check the Input or\n Member not found !!!","Error",JOptionPane.ERROR_MESSAGE);
+            }
+
+        }
+        catch(Exception ex){
+
+        }
+    }//GEN-LAST:event_btnLoadDetailsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -636,23 +755,25 @@ public class AddMember extends javax.swing.JFrame {
     }
     
     private boolean fieldsIsEmpty() {
+        String dob = ((JTextField)dateDOB.getDateEditor().getUiComponent()).getText();
         return txtFullName.getText() == null
                 || txtAddress.getText() == null || txtContactNo.getText() == null
-                || cmbDay.getSelectedIndex() == 0 || cmbMonth.getSelectedIndex() == 0 
-                || cmbYear.getSelectedIndex() == 0 || txtPassword.getText() == null;
+                ||  dob == null  || txtPassword.getText() == null;
     }
     
         private void clearFields() {
+            this.txtMembershipNo.setText(null);
             this.txtFullName.setText(null);
             this.txtAddress.setText(null);
             this.txtContactNo.setText(null);
             this.txtEmail.setText(null);
             this.txtNIC.setText(null);
-            this.txtPassword.setText(null);    
-            this.cmbDay.setSelectedIndex(0);
-            this.cmbMonth.setSelectedIndex(0);
-            this.cmbYear.setSelectedIndex(0);
+            this.txtPassword.setText(null);
+            this.dateDOB.setDate(null);
             this.lblStatus.setText(null);
+            this.lblListId.setText("");
+            radioMale.setSelected(true);
+            radioFemale.setSelected(false);
     }
         
         public void displayMemberDetails(){
@@ -666,6 +787,7 @@ public class AddMember extends javax.swing.JFrame {
             while(rs.next())
             {
                 v = new Vector();
+                v.add(rs.getString("id"));
                 v.add(rs.getString("Membership_No"));
                 v.add(rs.getString("Full_Name"));
                 v.add(rs.getString("Email"));
@@ -689,12 +811,11 @@ public class AddMember extends javax.swing.JFrame {
     private javax.swing.JButton btnCancel2;
     private javax.swing.JButton btnDelete;
     private javax.swing.ButtonGroup btnGroupSex;
+    private javax.swing.JButton btnLoadDetails;
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnReset1;
     private javax.swing.JButton btnSubmit;
-    private javax.swing.JComboBox<String> cmbDay;
-    private javax.swing.JComboBox<String> cmbMonth;
-    private javax.swing.JComboBox<String> cmbYear;
+    private com.toedter.calendar.JDateChooser dateDOB;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -713,7 +834,9 @@ public class AddMember extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblListId;
     private javax.swing.JLabel lblStatus;
+    private javax.swing.JLabel lblStatus2;
     private javax.swing.JRadioButton radioFemale;
     private javax.swing.JRadioButton radioMale;
     private javax.swing.JTable tblMembers;

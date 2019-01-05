@@ -65,6 +65,17 @@ public class DbSearch {
         return rs;
     }
     
+    public ResultSet searchMembers2(String ListId){
+        try{
+            stmt = DbConnection.getStatementConnection();
+            rs = stmt.executeQuery("SELECT * from user WHERE id='"+ListId+"'");
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return rs;
+    }
+    
     public ResultSet searchMembersBorrow(String MembershipNo){
         try{
             stmt = DbConnection.getStatementConnection();
@@ -124,6 +135,17 @@ public class DbSearch {
         try{
             stmt = DbConnection.getStatementConnection();
             rs = stmt.executeQuery("SELECT * from borrow WHERE return_ststus='Done' ORDER BY id DESC");
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return rs;
+    }
+    
+    public ResultSet bookCount(){
+        try{
+            stmt = DbConnection.getStatementConnection();
+            rs = stmt.executeQuery("SELECT * from books WHERE id='4'");
         }
         catch(Exception e){
             e.printStackTrace();
