@@ -21,23 +21,7 @@ import javalibraryapplication.model.Members;
  */
 public class BookController
     {
-//         public static void addBook(String isbn,String bookid,String bookname,String category,String author,String copyno,String price){
-//             try{
-//            
-//            if("".equals(isbn) || "".equals(bookid) || "".equals(bookname) || "".equals(category) || "".equals(author) || "".equals(copyno)){
-//                JOptionPane.showMessageDialog(null, "Fields cannot be empty","Error",JOptionPane.ERROR_MESSAGE);
-//            }
-//            else{
-//                new AddBook().bookForm(isbn,bookid,bookname,category,author,copyno,price);
-//                JOptionPane.showMessageDialog(null,"New Book Record has been inserted","Successful !",JOptionPane.INFORMATION_MESSAGE);
-//                DbConnection.closeCon();
-//            }
-//        }
-//        catch(Exception ex){
-//            
-//        }
-//
-//    }
+
          
          public static boolean addBook(String isbn,String bookid,String bookname,String category,String author,String copyno,String price){
 
@@ -50,5 +34,31 @@ public class BookController
 
                 return false;
 
-            } 
+            }
+         
+          public static boolean UpdateBook(String isbn,String bookid,String bookname,String category,String author,String copyno,String price,String listId){
+
+              
+                boolean returnValue = new AddBook().bookUpdateForm(isbn,bookid,bookname,category,author,copyno,price,listId);
+                
+                if(returnValue==true){
+                    return true;
+                }
+
+                return false;
+
+            }
+         
+         public static boolean deleteBook(String listid){
+
+              
+                boolean returnValue = new AddBook().deleteForm(listid);
+                
+                if(returnValue==true){
+                    return true;
+                }
+
+                return false;
+
+            }
 }

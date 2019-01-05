@@ -14,16 +14,7 @@ import javax.swing.JOptionPane;
  */
 public class AddBook 
     {
-//         public void bookForm(String isbn,String bookid,String bookname,String category,String author,String copyno,String price){
-//        Statement stmt;
-//        try{
-//            stmt = DbConnection.getStatementConnection();
-//            stmt.executeUpdate("INSERT into books (`isbn`, `bookid`, `bookname`, `category`, `author`, `copyno`, `price`) VALUES('" +isbn+ "','" +bookid+ "','" +bookname+ "','" +category+ "','" +author+ "','" +copyno+ "','" +price+ "')");
-//        }
-//        catch(Exception e){
-//            e.printStackTrace();
-//        }
-//    }
+
     
     public boolean bookForm(String isbn,String bookid,String bookname,String category,String author,String copyno,String price){
         Statement stmt;
@@ -31,6 +22,38 @@ public class AddBook
             stmt = DbConnection.getStatementConnection();
             stmt.executeUpdate("INSERT into books (`isbn`, `bookid`, `bookname`, `category`, `author`, `copyno`, `price`)"
                     + " VALUES('" +isbn+ "','" +bookid+ "','" +bookname+ "','" +category+ "','" +author+ "','" +copyno+ "','" +price+ "')");
+            DbConnection.closeCon();
+            return true;
+            
+        }
+        catch(Exception e){
+            JOptionPane.showConfirmDialog(null, e);
+        }
+        return false;
+    }
+    
+    public boolean bookUpdateForm(String isbn,String bookid,String bookname,String category,String author,String copyno,String price,String listId){
+        Statement stmt;
+        try{
+            stmt = DbConnection.getStatementConnection();
+            stmt.executeUpdate("UPDATE `books` SET `isbn`='"+isbn+"',`bookid`='"+bookid+"',"
+                    + "`bookname`='"+bookname+"',`category`='"+category+"',`author`='"+author+"',"
+                            + "`copyno`='"+copyno+"',`price`='"+price+"' WHERE `id`='"+listId+"'");
+            DbConnection.closeCon();
+            return true;
+            
+        }
+        catch(Exception e){
+            JOptionPane.showConfirmDialog(null, e);
+        }
+        return false;
+    }
+    
+     public boolean deleteForm(String listid){
+        Statement stmt;
+        try{
+            stmt = DbConnection.getStatementConnection();
+            stmt.executeUpdate("DELETE FROM `books` WHERE `id`='"+listid+"'");
             DbConnection.closeCon();
             return true;
             

@@ -54,6 +54,16 @@ public class DbSearch {
         }
         return rs;
     }
+    public ResultSet searchBooks2(String ListId){
+        try{
+            stmt = DbConnection.getStatementConnection();
+            rs = stmt.executeQuery("SELECT * from books WHERE id='"+ListId+"'");
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return rs;
+    }
     
     public ResultSet searchMembersBorrow(String MembershipNo){
         try{
@@ -80,7 +90,7 @@ public class DbSearch {
     public ResultSet searchBorrow(){
         try{
             stmt = DbConnection.getStatementConnection();
-            rs = stmt.executeQuery("SELECT * from borrow");
+            rs = stmt.executeQuery("SELECT * from borrow WHERE return_ststus='False' ORDER BY id DESC");
         }
         catch(Exception e){
             e.printStackTrace();
@@ -92,6 +102,17 @@ public class DbSearch {
         try{
             stmt = DbConnection.getStatementConnection();
             rs = stmt.executeQuery("SELECT * from borrow WHERE membership_no='"+MembershipNo+"' AND return_ststus ='False'");
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return rs;
+    }
+    
+    public ResultSet searchReturn(){
+        try{
+            stmt = DbConnection.getStatementConnection();
+            rs = stmt.executeQuery("SELECT * from borrow WHERE return_ststus='Done' ORDER BY id DESC");
         }
         catch(Exception e){
             e.printStackTrace();

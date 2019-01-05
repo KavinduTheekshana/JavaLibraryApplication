@@ -652,19 +652,30 @@ public class ReturnBook extends javax.swing.JFrame {
             }
             String return_ststus="Done";
             
-            String payment1=payment1 = txtpayment1.getText();
-            String payment2=txtpayment2.getText();
-            
-            String total="0";
-            if(txtpayment1.getText().isEmpty()){
+            String payment1;
+            String payment2;           
+            String total;
+            if(txtpayment1.getText().isEmpty() && txtpayment2.getText().isEmpty()){
+                payment1="0";
+                payment2="0";
+                total="0";
+            }
+            else if(txtpayment1.getText().isEmpty()){
+                payment1="0";
+                payment2=txtpayment2.getText();
                 int value = Integer.parseInt(txtpayment2.getText());
-                 total =String.valueOf(value);
+                total =String.valueOf(value);
             }else if(txtpayment2.getText().isEmpty()){
+                payment1=payment1 = txtpayment1.getText();
+                payment2="0";
                 int value = Integer.parseInt(txtpayment1.getText());
-                 total =String.valueOf(value);
+                total =String.valueOf(value);
+                 
             }else{
+                payment1=payment1 = txtpayment1.getText();
+                payment2=txtpayment2.getText();
                 int value = Integer.parseInt(txtpayment1.getText())+Integer.parseInt(txtpayment2.getText());
-                 total =String.valueOf(value);
+                total =String.valueOf(value);
             }
             
             
