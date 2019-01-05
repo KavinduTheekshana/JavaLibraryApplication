@@ -40,11 +40,11 @@ public class BorrowController
 
             } 
 
-        public static boolean updateReturn(String membershipNo,String borrowid,String returnedDate,
-                        String condetion,String payment1,String payment2,String total){
+        public static boolean updateReturn(String borrowid,String returnedDate,
+                        String condetion,String payment1,String payment2,String total,String return_ststus){
 
               
-                boolean returnValue = new UpdateBarrow().borrowForm(membershipNo,borrowid,returnedDate,condetion,payment1,payment2,total);
+                boolean returnValue = new UpdateBarrow().borrowForm(borrowid,returnedDate,condetion,payment1,payment2,total,return_ststus);
                 
                 if(returnValue==true){
                     return true;

@@ -15,13 +15,14 @@ import javax.swing.JOptionPane;
 public class UpdateBarrow 
     {
     
-    public boolean borrowForm(String membershipNo,String borrowid,String returnedDate,
-                        String condetion,String payment1,String payment2,String total){
+    public boolean borrowForm(String borrowid,String returnedDate,
+                        String condetion,String payment1,String payment2,String total,String return_ststus){
         Statement stmt;
         try{
             stmt = DbConnection.getStatementConnection();
             stmt.executeUpdate("UPDATE `borrow` SET `returned_date`='"+returnedDate+"',`condetion`='"+condetion+"',"
-                    + "`condetion_Payment`='"+payment1+"',`aditionl_payment`='"+payment2+"',`total_Payment`='"+total+"' WHERE `id`='"+borrowid+"'");
+                    + "`condetion_Payment`='"+payment1+"',`aditionl_payment`='"+payment2+"',"
+                            + "`total_Payment`='"+total+"',`return_ststus`='"+return_ststus+"' WHERE `id`='"+borrowid+"'");
             DbConnection.closeCon();
             return true;
             

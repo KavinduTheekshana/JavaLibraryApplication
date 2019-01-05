@@ -74,7 +74,6 @@ public class AddBorrow extends javax.swing.JFrame {
         btnReset = new javax.swing.JButton();
         btnSubmit = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
-        txtMembershipNo = new javax.swing.JTextField();
         lblStatus = new javax.swing.JLabel();
         txtMemberName = new javax.swing.JTextField();
         dateBorrowing = new com.toedter.calendar.JDateChooser();
@@ -82,6 +81,7 @@ public class AddBorrow extends javax.swing.JFrame {
         dateReturning = new com.toedter.calendar.JDateChooser();
         btnSearchMember = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        txtMembershipNo = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblBorrow = new javax.swing.JTable();
@@ -226,8 +226,6 @@ public class AddBorrow extends javax.swing.JFrame {
             }
         });
 
-        txtMembershipNo.setFont(new java.awt.Font("Montserrat Light", 0, 24)); // NOI18N
-
         lblStatus.setForeground(new java.awt.Color(255, 0, 0));
         lblStatus.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
@@ -256,6 +254,8 @@ public class AddBorrow extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+
+        txtMembershipNo.setFont(new java.awt.Font("Montserrat Light", 0, 24)); // NOI18N
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -324,8 +324,8 @@ public class AddBorrow extends javax.swing.JFrame {
                 .addGap(35, 35, 35)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtMembershipNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSearchMember, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnSearchMember, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMembershipNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -357,12 +357,12 @@ public class AddBorrow extends javax.swing.JFrame {
                     .addComponent(dateReturning, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(92, Short.MAX_VALUE))
         );
 
         jPanel5.setBackground(new java.awt.Color(247, 249, 249));
@@ -587,8 +587,7 @@ public class AddBorrow extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
-
-        try{
+     try{
             String membershipNo = txtMembershipNo.getText();
             String memberName = txtMemberName.getText();
             String bookid = txtBookId.getText();
@@ -597,20 +596,26 @@ public class AddBorrow extends javax.swing.JFrame {
             String author = txtAuthor.getText();
             String browingDate = ((JTextField)dateBorrowing.getDateEditor().getUiComponent()).getText();
             String returningDate = ((JTextField)dateReturning.getDateEditor().getUiComponent()).getText();
-
-            if (fieldsIsEmpty()) {
-                lblStatus.setText("Error: Some of the fields is empty!");
-            } else {
+            int x=1;
+            
+            if(fieldsIsEmpty()) {
+                   lblStatus.setText("Error: Some of the fields is empty!");             
+            } 
+            else {
                 boolean returnValue = BorrowController.addBorrow(membershipNo,memberName,bookid,bookname,category,author,browingDate,returningDate);
+              
                 if(returnValue==true){
                     JOptionPane.showMessageDialog(null, "New Borrow has been Added successfully");
                     displayBorrowDetails();
                     clearFields();
-                }
+                  }
+                
+                
+
             }
-        }catch(Exception ex){
-            JOptionPane.showConfirmDialog(null, ex);
-        }
+            }catch(Exception ex){
+                JOptionPane.showConfirmDialog(null, ex);
+            }
     }//GEN-LAST:event_btnSubmitActionPerformed
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
@@ -656,10 +661,11 @@ public class AddBorrow extends javax.swing.JFrame {
     }
     
     private boolean fieldsIsEmpty() {
-        return txtMembershipNo.getText() == null
-                 || txtBookId.getText() == null
-                || dateBorrowing==null
-                || dateReturning== null;
+        return txtMembershipNo.getText().isEmpty()
+                || txtMemberName.getText().isEmpty() || txtBookId.getText().isEmpty() 
+                || txtBookName.getText().isEmpty()
+                || ((JTextField)dateBorrowing.getDateEditor().getUiComponent()).getText().isEmpty()
+                || ((JTextField)dateReturning.getDateEditor().getUiComponent()).getText().isEmpty();
     }
     
         private void clearFields() {
@@ -670,7 +676,8 @@ public class AddBorrow extends javax.swing.JFrame {
             this.txtCategory.setText(null);
             this.txtAuthor.setText(null);
             this.dateBorrowing.setDate(null);
-            this.dateReturning.setDate(null);          
+            this.dateReturning.setDate(null);
+            this.lblStatus.setText("");
     }
         
         public void displayBorrowDetails(){

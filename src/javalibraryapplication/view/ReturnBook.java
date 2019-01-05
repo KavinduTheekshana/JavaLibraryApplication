@@ -16,17 +16,18 @@ import javalibraryapplication.database.DbConnection;
 import javax.swing.table.DefaultTableModel;
 import javalibraryapplication.model.DbSearch;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import javalibraryapplication.model.DbSearch;
-import javalibraryapplication.database.DbConnection;
-import javax.swing.JOptionPane;
+
+
 import javalibraryapplication.model.Members;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
+
+
+
 
 
 /**
@@ -633,6 +634,15 @@ public class ReturnBook extends javax.swing.JFrame {
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         try{
+            
+            
+
+            
+            if(fieldsIsEmpty()){
+                lblStatus.setText("Error: Some of the fields is empty!");
+            }
+            else{
+                
             String membershipNo = txtMembershipNo.getText();
             String borrowid = txtborrowid.getText();
             String returnedDate = ((JTextField)dateReturn.getDateEditor().getUiComponent()).getText();
@@ -640,18 +650,27 @@ public class ReturnBook extends javax.swing.JFrame {
             if (radioNotSatisfied.isSelected()) {
                 condetion = "Not Satisfied";
             }
+            String return_ststus="Done";
             
-            String payment1 = txtpayment1.getText();
-            String payment2 = txtpayment2.getText();
-            int value = Integer.parseInt(txtpayment1.getText())*Integer.parseInt(txtpayment2.getText());
-            String total =String.valueOf(value);
-
+            String payment1=payment1 = txtpayment1.getText();
+            String payment2=txtpayment2.getText();
             
-            if (fieldsIsEmpty()) {
-                lblStatus.setText("Error: Some of the fields is empty!");
-            } else {
-                
-                boolean returnValue = BorrowController.updateReturn(membershipNo,borrowid,returnedDate,condetion,payment1,payment2,total);
+            String total="0";
+            if(txtpayment1.getText().isEmpty()){
+                int value = Integer.parseInt(txtpayment2.getText());
+                 total =String.valueOf(value);
+            }else if(txtpayment2.getText().isEmpty()){
+                int value = Integer.parseInt(txtpayment1.getText());
+                 total =String.valueOf(value);
+            }else{
+                int value = Integer.parseInt(txtpayment1.getText())+Integer.parseInt(txtpayment2.getText());
+                 total =String.valueOf(value);
+            }
+            
+            
+            
+            
+                boolean returnValue = BorrowController.updateReturn(borrowid,returnedDate,condetion,payment1,payment2,total,return_ststus);
               
                 if(returnValue==true){
                     JOptionPane.showMessageDialog(null, "Return Book has been Added successfully\n" + "Full Payment : " + total);
@@ -671,10 +690,14 @@ public class ReturnBook extends javax.swing.JFrame {
 
     private void btnSearchReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchReturnActionPerformed
  
-        try {
+        String MembershipNo = txtMembershipNo.getText();
+        searchreturn(MembershipNo);
+        
+    }//GEN-LAST:event_btnSearchReturnActionPerformed
+    private void searchreturn(String MembershipNo){
+    try {
             String membershipNo = null;
-            String Name = null;
-            String MembershipNo = txtMembershipNo.getText();
+            String Name = null;            
             ResultSet rs = new DbSearch().searchBorrowReturn(MembershipNo);
             while(rs.next()){
                 membershipNo = rs.getString("membership_no");
@@ -691,10 +714,9 @@ public class ReturnBook extends javax.swing.JFrame {
             
         } catch (Exception e) {
             JOptionPane.showConfirmDialog(null, e);
-        }
-        
-    }//GEN-LAST:event_btnSearchReturnActionPerformed
-
+        } 
+}   
+    
     private void radioNotSatisfiedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioNotSatisfiedActionPerformed
         txtpayment1.setEditable(true);
     }//GEN-LAST:event_radioNotSatisfiedActionPerformed
@@ -755,8 +777,10 @@ public class ReturnBook extends javax.swing.JFrame {
     }
     
     private boolean fieldsIsEmpty() {
-        return txtMembershipNo.getText() == null
-                ||dateReturn==null;
+        return txtMembershipNo.getText().isEmpty()
+                || txtMemberName.getText().isEmpty() || txtCategory.getText().isEmpty() 
+                || txtBookName.getText().isEmpty()
+                || ((JTextField)dateReturn.getDateEditor().getUiComponent()).getText().isEmpty();
 
     }
     
@@ -770,11 +794,12 @@ public class ReturnBook extends javax.swing.JFrame {
             this.txtExpReturnDate.setText(null); 
             this.dateReturn.setDate(null);
             this.radioSatisfied.setSelected(true);
-            this.radioYes.setSelected(true);
+            this.radioNo.setSelected(true);
             this.txtpayment1.setEditable(false);
             this.txtpayment1.setText(null);
             this.txtpayment2.setEditable(false);
-            this.txtpayment2.setText(null);           
+            this.txtpayment2.setText(null);  
+            this.lblStatus.setText("");
             
     }
         

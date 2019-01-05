@@ -540,7 +540,8 @@ public class AddMember extends javax.swing.JFrame {
             
             if (fieldsIsEmpty()) {
                 lblStatus.setText("Error: Some of the fields is empty!");
-            } else {
+            } 
+            else {
                 
                 boolean returnValue = usercontroller.addMember(membershipNo,fullname,address,contact,email,nic,sex,dob,psw);
               
