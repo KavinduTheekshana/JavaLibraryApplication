@@ -145,12 +145,47 @@ public class DbSearch {
     public ResultSet bookCount(){
         try{
             stmt = DbConnection.getStatementConnection();
-            rs = stmt.executeQuery("SELECT * from books WHERE id='4'");
+            rs = stmt.executeQuery("SELECT COUNT(id) from books");
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return rs;
+    }  
+
+
+   public ResultSet memberCount(){
+        try{
+            stmt = DbConnection.getStatementConnection();
+            rs = stmt.executeQuery("SELECT COUNT(id) from user");
         }
         catch(Exception e){
             e.printStackTrace();
         }
         return rs;
     }
-    
+   
+   public ResultSet borrowCount(){
+        try{
+            stmt = DbConnection.getStatementConnection();
+            rs = stmt.executeQuery("SELECT COUNT(id) from borrow WHERE return_ststus='False'");
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return rs;
+    }
+   
+   
+   public ResultSet ReturnCount(){
+        try{
+            stmt = DbConnection.getStatementConnection();
+            rs = stmt.executeQuery("SELECT COUNT(id) from borrow WHERE return_ststus='Done'");
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return rs;
+    }
+   
 }

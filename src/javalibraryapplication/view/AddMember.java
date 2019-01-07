@@ -644,7 +644,7 @@ public class AddMember extends javax.swing.JFrame {
             String psw = txtPassword.getText();
             
             if (fieldsIsEmpty()) {
-                lblStatus.setText("Error: Some of the fields is empty!");
+                lblStatus2.setText("Error: Some of the fields is empty!");
             } 
             else {
                 
@@ -755,10 +755,10 @@ public class AddMember extends javax.swing.JFrame {
     }
     
     private boolean fieldsIsEmpty() {
-        String dob = ((JTextField)dateDOB.getDateEditor().getUiComponent()).getText();
-        return txtFullName.getText() == null
-                || txtAddress.getText() == null || txtContactNo.getText() == null
-                ||  dob == null  || txtPassword.getText() == null;
+       ((JTextField)dateDOB.getDateEditor().getUiComponent()).getText().isEmpty();
+        return txtFullName.getText().isEmpty()
+                || txtAddress.getText().isEmpty() || txtContactNo.getText().isEmpty()
+                ||  ((JTextField)dateDOB.getDateEditor().getUiComponent()).getText().isEmpty()|| txtPassword.getText().isEmpty();
     }
     
         private void clearFields() {
@@ -771,6 +771,7 @@ public class AddMember extends javax.swing.JFrame {
             this.txtPassword.setText(null);
             this.dateDOB.setDate(null);
             this.lblStatus.setText(null);
+            this.lblStatus2.setText(null);
             this.lblListId.setText("");
             radioMale.setSelected(true);
             radioFemale.setSelected(false);

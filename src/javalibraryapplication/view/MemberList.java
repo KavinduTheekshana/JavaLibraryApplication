@@ -117,15 +117,15 @@ public class MemberList extends javax.swing.JFrame {
         tblMembers.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane1.setViewportView(tblMembers);
 
-        jPanel5.setBackground(new java.awt.Color(231, 76, 60));
+        jPanel5.setBackground(new java.awt.Color(241, 196, 15));
 
         jLabel11.setBackground(new java.awt.Color(71, 71, 71));
         jLabel11.setFont(new java.awt.Font("Montserrat SemiBold", 0, 24)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setText("MENBERS LIST");
+        jLabel11.setText("MEMBERS LIST");
 
-        jPanel4.setBackground(new java.awt.Color(231, 76, 60));
+        jPanel4.setBackground(new java.awt.Color(241, 196, 15));
 
         cmbSchField.setFont(new java.awt.Font("Montserrat Light", 0, 20)); // NOI18N
         cmbSchField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Name", "Email", "ID", "Membership No" }));

@@ -116,7 +116,7 @@ public class BookList extends javax.swing.JFrame {
         tblBook.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane1.setViewportView(tblBook);
 
-        jPanel5.setBackground(new java.awt.Color(231, 76, 60));
+        jPanel5.setBackground(new java.awt.Color(193, 41, 46));
 
         jLabel11.setBackground(new java.awt.Color(71, 71, 71));
         jLabel11.setFont(new java.awt.Font("Montserrat SemiBold", 0, 24)); // NOI18N
@@ -124,7 +124,7 @@ public class BookList extends javax.swing.JFrame {
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("BOOK LIST");
 
-        jPanel4.setBackground(new java.awt.Color(231, 76, 60));
+        jPanel4.setBackground(new java.awt.Color(193, 41, 46));
 
         cmbSchField.setFont(new java.awt.Font("Montserrat Light", 0, 20)); // NOI18N
         cmbSchField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Name", "Author", "ID", "ISBN", "Category" }));
