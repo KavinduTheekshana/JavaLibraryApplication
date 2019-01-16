@@ -17,10 +17,16 @@ public class AddBorrow
     
     public boolean borrowForm(String membershipNo,String memberName,String bookid,String bookname,String category,String author,String browingDate,String returningDate){
         Statement stmt;
+        Statement stmt2;
         try{
             stmt = DbConnection.getStatementConnection();
             stmt.executeUpdate("INSERT into borrow (`membership_no`, `member_name`, `book_id`, `bookname`, `category`, `author`, `borrowing_date`, `returning_date`)"
                     + " VALUES('" +membershipNo+ "','" +memberName+ "','" +bookid+ "','" +bookname+ "','" +category+ "','" +author+ "','" +browingDate+ "','" +returningDate+ "')");
+            
+            stmt2 = DbConnection.getStatementConnection();
+            stmt2.executeUpdate("UPDATE `books` SET `copyno`=(`copyno`-1) WHERE `bookid`='" +bookid+ "'");
+            DbConnection.closeCon();
+            
             DbConnection.closeCon();
             return true;
             

@@ -5,7 +5,12 @@
  */
 package javalibraryapplication.view;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javalibraryapplication.controller.usercontroller;
+import javalibraryapplication.database.DbConnection;
+import javalibraryapplication.model.DbSearch;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -214,17 +219,42 @@ public class login extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnSignInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignInActionPerformed
-        int checkLogin = usercontroller.login(txtMembershipNo.getText(),txtPassword.getText());
-        if(checkLogin==1){
-            new Dashboard().setVisible(true);
-            dispose();
-        }else if(checkLogin==2){
-            new UserDashboard().setVisible(true);
-            dispose();
-        }else{
-           lblStatus.setText("The account number or password you entered did not match our records.");
-           txtMembershipNo.setText(null);
-           txtPassword.setText(null);
+        try{
+            String username = null;
+            String password = null;
+            String role = null;
+            
+            
+            ResultSet rs = new DbSearch().searchLogin(txtMembershipNo.getText());
+            while(rs.next()){
+                username = rs.getString("Membership_No");
+                password = rs.getString("Password");
+                role = rs.getString("user_role");
+            }
+            if(username != null && password != null){
+                if(password.equals(txtPassword.getText())){
+                    if(role.equals("admin")){
+                        new Dashboard().setVisible(true);
+                        dispose();
+                    }else if(role.equals("user")){
+                        UserDashboard u= new UserDashboard();
+                        u.nameLabel.setText(username);
+                        u.setVisible(true);
+                        
+                        dispose();
+                    }
+                }
+                else{
+                    lblStatus.setText("The account number or password you entered did not match our records.");
+                    txtMembershipNo.setText(null);
+                    txtPassword.setText(null);
+                }
+            }
+            
+            DbConnection.closeCon();
+        }
+        catch(SQLException ex){
+            JOptionPane.showMessageDialog(null,ex);
         }
     }//GEN-LAST:event_btnSignInActionPerformed
 

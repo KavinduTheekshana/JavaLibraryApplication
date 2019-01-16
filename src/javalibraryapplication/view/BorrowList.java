@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.util.Vector;
 import javalibraryapplication.database.DbConnection;
 import javalibraryapplication.model.DbSearch;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -45,8 +46,7 @@ public class BorrowList extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         cmbSchField = new javax.swing.JComboBox<>();
-        txtFullName = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        txtSearch = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -129,11 +129,12 @@ public class BorrowList extends javax.swing.JFrame {
         cmbSchField.setFont(new java.awt.Font("Montserrat Light", 0, 20)); // NOI18N
         cmbSchField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "Member Name", "Book Name" }));
 
-        txtFullName.setFont(new java.awt.Font("Montserrat Light", 0, 24)); // NOI18N
-
-        jButton1.setBackground(new java.awt.Color(204, 204, 204));
-        jButton1.setFont(new java.awt.Font("Montserrat Light", 0, 24)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Kavindu Theekshana\\Downloads\\magnifying-glass.png")); // NOI18N
+        txtSearch.setFont(new java.awt.Font("Montserrat Light", 0, 24)); // NOI18N
+        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSearchKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -143,23 +144,17 @@ public class BorrowList extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addComponent(cmbSchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(txtSearch, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cmbSchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtFullName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cmbSchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -243,6 +238,45 @@ public class BorrowList extends javax.swing.JFrame {
         dispose(); //Destroy the JFrame object
     }//GEN-LAST:event_btnCancel2ActionPerformed
 
+    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
+        try {
+            ResultSet rs;
+            if(cmbSchField.getSelectedItem().toString()=="ID"){
+                rs = new DbSearch().searchBorrowId(txtSearch.getText());
+            }
+            else if(cmbSchField.getSelectedItem().toString()=="Member Name"){
+                rs = new DbSearch().searchBorrowMemberName(txtSearch.getText());
+            }
+            else if(cmbSchField.getSelectedItem().toString()=="Book Name"){
+                rs = new DbSearch().searchBorrowBookName(txtSearch.getText());
+            }
+            else{
+                rs = new DbSearch().searchBorrowId(txtSearch.getText());
+            }
+            DefaultTableModel dtm = (DefaultTableModel)
+            tblBorrow.getModel();
+            dtm.setRowCount(0);
+            Vector v; 
+            while(rs.next())
+            {
+                v = new Vector();
+                v.add(rs.getString("id"));
+                v.add(rs.getString("membership_no"));
+                v.add(rs.getString("member_name"));
+                v.add(rs.getString("book_id"));
+                v.add(rs.getString("bookname"));
+                v.add(rs.getString("category"));
+                v.add(rs.getString("author"));
+                v.add(rs.getString("borrowing_date"));
+                v.add(rs.getString("returning_date"));
+                dtm.addRow(v);
+            }
+            DbConnection.closeCon();
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null, e);
+        }
+    }//GEN-LAST:event_txtSearchKeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -316,7 +350,6 @@ public class BorrowList extends javax.swing.JFrame {
     private javax.swing.JLabel DragControle;
     private javax.swing.JButton btnCancel2;
     private javax.swing.JComboBox<String> cmbSchField;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -325,6 +358,6 @@ public class BorrowList extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblBorrow;
-    private javax.swing.JTextField txtFullName;
+    private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
 }

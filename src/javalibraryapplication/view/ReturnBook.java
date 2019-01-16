@@ -646,6 +646,7 @@ public class ReturnBook extends javax.swing.JFrame {
                 
             String membershipNo = txtMembershipNo.getText();
             String borrowid = txtborrowid.getText();
+            String bookid = txtbookId.getText();
             String returnedDate = ((JTextField)dateReturn.getDateEditor().getUiComponent()).getText();
             String condetion = "Satisfied";
             if (radioNotSatisfied.isSelected()) {
@@ -682,7 +683,7 @@ public class ReturnBook extends javax.swing.JFrame {
             
             
             
-                boolean returnValue = BorrowController.updateReturn(borrowid,returnedDate,condetion,payment1,payment2,total,return_ststus);
+                boolean returnValue = BorrowController.updateReturn(borrowid,returnedDate,condetion,payment1,payment2,total,return_ststus,bookid);
               
                 if(returnValue==true){
                     JOptionPane.showMessageDialog(null, "Return Book has been Added successfully\n" + "Full Payment : " + total);

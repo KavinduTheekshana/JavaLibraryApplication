@@ -142,6 +142,17 @@ public class DbSearch {
         return rs;
     }
     
+    public ResultSet searchReturnwhenuser(String userid){
+        try{
+            stmt = DbConnection.getStatementConnection();
+            rs = stmt.executeQuery("SELECT * from borrow WHERE membership_no='9489' ORDER BY id DESC");
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return rs;
+    }
+    
     public ResultSet bookCount(){
         try{
             stmt = DbConnection.getStatementConnection();
@@ -181,6 +192,171 @@ public class DbSearch {
         try{
             stmt = DbConnection.getStatementConnection();
             rs = stmt.executeQuery("SELECT COUNT(id) from borrow WHERE return_ststus='Done'");
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return rs;
+    }
+   
+      public ResultSet searchMemberName(String fulName){
+        try{
+            stmt = DbConnection.getStatementConnection();
+            rs = stmt.executeQuery("SELECT * from user WHERE Full_Name LIKE '%"+fulName+"%'");
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return rs;
+    }
+      
+      public ResultSet searchMemberEmail(String email){
+        try{
+            stmt = DbConnection.getStatementConnection();
+            rs = stmt.executeQuery("SELECT * from user WHERE 	Email LIKE '%"+email+"%'");
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return rs;
+    }
+      
+       public ResultSet searchMemberID(String id){
+        try{
+            stmt = DbConnection.getStatementConnection();
+            rs = stmt.executeQuery("SELECT * from user WHERE id LIKE '%"+id+"%'");
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return rs;
+    }
+       
+       public ResultSet searchMemberMembershipNo(String MembershipNo){
+        try{
+            stmt = DbConnection.getStatementConnection();
+            rs = stmt.executeQuery("SELECT * from user WHERE Membership_No LIKE '%"+MembershipNo+"%'");
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return rs;
+    }
+      
+        public ResultSet searchBookName(String bookname){
+        try{
+            stmt = DbConnection.getStatementConnection();
+            rs = stmt.executeQuery("SELECT * from books WHERE bookname LIKE '%"+bookname+"%'");
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return rs;
+    }
+        
+        public ResultSet searchBookAuthor(String Author){
+        try{
+            stmt = DbConnection.getStatementConnection();
+            rs = stmt.executeQuery("SELECT * from books WHERE 	author LIKE '%"+Author+"%'");
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return rs;
+    }
+           
+        public ResultSet searchBookID(String ID){
+        try{
+            stmt = DbConnection.getStatementConnection();
+            rs = stmt.executeQuery("SELECT * from books WHERE bookid LIKE '%"+ID+"%'");
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return rs;
+    }
+              
+        public ResultSet searchBookISBN(String ISBN){
+        try{
+            stmt = DbConnection.getStatementConnection();
+            rs = stmt.executeQuery("SELECT * from books WHERE isbn LIKE '%"+ISBN+"%'");
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return rs;
+    }
+                 
+        public ResultSet searchBookCategory(String Category){
+        try{
+            stmt = DbConnection.getStatementConnection();
+            rs = stmt.executeQuery("SELECT * from books WHERE 	category LIKE '%"+Category+"%'");
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return rs;
+    }
+        
+        public ResultSet searchBorrowId(String id){
+        try{
+            stmt = DbConnection.getStatementConnection();
+            rs = stmt.executeQuery("SELECT * from borrow WHERE return_ststus='False' AND id LIKE '%"+id+"%' ORDER BY id DESC");
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return rs;
+    }
+        
+        public ResultSet searchBorrowMemberName(String memberName){
+        try{
+            stmt = DbConnection.getStatementConnection();
+            rs = stmt.executeQuery("SELECT * from borrow WHERE return_ststus='False' AND member_name LIKE '%"+memberName+"%' ORDER BY id DESC");
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return rs;
+    }
+         
+        public ResultSet searchBorrowBookName(String bookName){
+        try{
+            stmt = DbConnection.getStatementConnection();
+            rs = stmt.executeQuery("SELECT * from borrow WHERE return_ststus='False' AND bookname LIKE '%"+bookName+"%' ORDER BY id DESC");
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return rs;
+    }
+        
+        public ResultSet searchReturnID(String id){
+        try{
+            stmt = DbConnection.getStatementConnection();
+            rs = stmt.executeQuery("SELECT * from borrow WHERE return_ststus='Done' AND id LIKE '%"+id+"%' ORDER BY id DESC");
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return rs;
+    }
+        
+        public ResultSet searchReturnMemberName(String MemberName){
+        try{
+            stmt = DbConnection.getStatementConnection();
+            rs = stmt.executeQuery("SELECT * from borrow WHERE return_ststus='Done' AND member_name LIKE '%"+MemberName+"%' ORDER BY id DESC");
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return rs;
+    }
+        
+        public ResultSet searchReturnBookName(String bookName){
+        try{
+            stmt = DbConnection.getStatementConnection();
+            rs = stmt.executeQuery("SELECT * from borrow WHERE return_ststus='Done' AND bookname LIKE '%"+bookName+"%' ORDER BY id DESC");
         }
         catch(Exception e){
             e.printStackTrace();

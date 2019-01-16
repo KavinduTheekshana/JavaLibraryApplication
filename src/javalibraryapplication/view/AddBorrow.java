@@ -85,6 +85,7 @@ public class AddBorrow extends javax.swing.JFrame {
         txtMembershipNo = new javax.swing.JTextField();
         lblListId = new javax.swing.JLabel();
         btnLoadDetails = new javax.swing.JButton();
+        txtbookCount = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblBorrow = new javax.swing.JTable();
@@ -276,6 +277,9 @@ public class AddBorrow extends javax.swing.JFrame {
             }
         });
 
+        txtbookCount.setEditable(false);
+        txtbookCount.setFont(new java.awt.Font("Montserrat Light", 0, 24)); // NOI18N
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -287,7 +291,9 @@ public class AddBorrow extends javax.swing.JFrame {
                 .addComponent(jLabel6)
                 .addGap(18, 18, 18)
                 .addComponent(txtCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 127, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtbookCount)
+                .addContainerGap())
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -366,7 +372,8 @@ public class AddBorrow extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(txtCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtbookCount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
@@ -622,6 +629,7 @@ public class AddBorrow extends javax.swing.JFrame {
             String bookName = null;
             String category = null;
             String author = null;
+            String count = null;
             String BookID = txtBookId.getText();
             ResultSet rs = new DbSearch().searchBookIDBorrowForm(BookID);
             while(rs.next()){
@@ -629,11 +637,13 @@ public class AddBorrow extends javax.swing.JFrame {
                 bookName = rs.getString("bookname");
                 category = rs.getString("category");
                 author = rs.getString("author");
+                count = rs.getString("copyno");
             }
             if(bookID!=null && bookName!=null && category!=null){
                 txtBookName.setText(bookName);
                 txtCategory.setText(category);
                 txtAuthor.setText(author);
+                txtbookCount.setText(count);
                 DbConnection.closeCon();
             }
             else{
@@ -685,13 +695,16 @@ public class AddBorrow extends javax.swing.JFrame {
             String bookname = txtBookName.getText();
             String category = txtCategory.getText();
             String author = txtAuthor.getText();
+            int bookcount = Integer.parseInt(txtbookCount.getText());
             String browingDate = ((JTextField)dateBorrowing.getDateEditor().getUiComponent()).getText();
             String returningDate = ((JTextField)dateReturning.getDateEditor().getUiComponent()).getText();
-            int x=1;
             
             if(fieldsIsEmpty()) {
                    lblStatus.setText("Error: Some of the fields is empty!");             
             } 
+            else if(bookcount==0){
+                lblStatus.setText("Error: Books Are Not Available");
+            }
             else {
                 boolean returnValue = BorrowController.addBorrow(membershipNo,memberName,bookid,bookname,category,author,browingDate,returningDate);
               
@@ -820,6 +833,7 @@ public class AddBorrow extends javax.swing.JFrame {
             this.lblStatus.setText("");
             this.lblStatus2.setText("");
             this.lblListId.setText("");
+            this.txtbookCount.setText(null);
     }
         
         public void displayBorrowDetails(){
@@ -893,5 +907,6 @@ public class AddBorrow extends javax.swing.JFrame {
     private javax.swing.JTextField txtCategory;
     private javax.swing.JTextField txtMemberName;
     private javax.swing.JTextField txtMembershipNo;
+    private javax.swing.JTextField txtbookCount;
     // End of variables declaration//GEN-END:variables
 }

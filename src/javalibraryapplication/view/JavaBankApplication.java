@@ -17,7 +17,7 @@ public class JavaBankApplication {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        new UserDashboard().setVisible(true);
+        new ReturnList().setVisible(true);
     
 //        Splash splashScreen = new Splash();
 //        splashScreen.setVisible(true);

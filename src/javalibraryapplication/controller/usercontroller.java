@@ -27,13 +27,14 @@ public class usercontroller {
     private final String table = "`user`";
     protected PreparedStatement pstmt;
     
+    
       public static int login(String txtMembershipNo,String txtPassword) {
         try{
             String username = null;
             String password = null;
             String role = null;
             
-            
+
             ResultSet rs = new DbSearch().searchLogin(txtMembershipNo);
             while(rs.next()){
                 username = rs.getString("Membership_No");
@@ -51,6 +52,7 @@ public class usercontroller {
                 else{
                     return 0;
                 }
+                
             }
             
             DbConnection.closeCon();
