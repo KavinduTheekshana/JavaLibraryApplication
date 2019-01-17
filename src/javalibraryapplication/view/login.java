@@ -238,13 +238,14 @@ public class login extends javax.swing.JFrame {
                         dispose();
                     }else if(role.equals("user")){
                         UserDashboard u= new UserDashboard();
-                        u.nameLabel.setText(username);
+                        u.jTextField2.setText(username);
                         u.setVisible(true);
                         
                         dispose();
                     }
                 }
                 else{
+                    
                     lblStatus.setText("The account number or password you entered did not match our records.");
                     txtMembershipNo.setText(null);
                     txtPassword.setText(null);

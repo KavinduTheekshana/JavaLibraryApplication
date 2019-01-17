@@ -145,7 +145,7 @@ public class DbSearch {
     public ResultSet searchReturnwhenuser(String userid){
         try{
             stmt = DbConnection.getStatementConnection();
-            rs = stmt.executeQuery("SELECT * from borrow WHERE membership_no='9489' ORDER BY id DESC");
+            rs = stmt.executeQuery("SELECT * from borrow WHERE membership_no='"+userid+"' ORDER BY id DESC");
         }
         catch(Exception e){
             e.printStackTrace();
@@ -264,6 +264,8 @@ public class DbSearch {
         }
         return rs;
     }
+        
+  
            
         public ResultSet searchBookID(String ID){
         try{

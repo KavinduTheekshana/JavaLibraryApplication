@@ -635,10 +635,7 @@ public class ReturnBook extends javax.swing.JFrame {
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         try{
-            
-            
-
-            
+          
             if(fieldsIsEmpty()){
                 lblStatus.setText("Error: Some of the fields is empty!");
             }
